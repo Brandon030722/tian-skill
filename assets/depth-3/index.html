@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="折光航线的本地派遣演练，展示 Tian 三档任务流程中的跨控件状态。">
+  <title>航线调度台 · Tian</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./dispatch.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#workspace">跳到调度台</a>
+  <header class="masthead">
+    <div class="shell masthead-content">
+      <a class="identity" href="../showcase/index.html" aria-label="折光航线发布页">
+        <span class="mark" aria-hidden="true"></span><strong>折光航线</strong>
+      </a>
+      <div class="masthead-end">
+        <span>本地演练</span>
+        <a href="../gallery/index.html">三档总览 <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+  </header>
+
+  <main class="shell" id="workspace" tabindex="-1">
+    <div class="heading">
+      <div>
+        <p class="eyebrow">三档 · 任务流程</p>
+        <h1>航线调度台</h1>
+        <p class="intro">选择海域，按航线装配设备，再演练一次派遣。</p>
+      </div>
+      <ol class="stages" aria-label="派遣流程">
+        <li data-stage="draft" aria-current="step"><span>01</span> 配置</li>
+        <li data-stage="running"><span>02</span> 派遣</li>
+        <li data-stage="done"><span>03</span> 回执</li>
+      </ol>
+    </div>
+
+    <form id="dispatch-form" class="workspace">
+      <section class="regions" aria-labelledby="regions-title">
+        <fieldset id="route-fields">
+          <legend id="regions-title">勘测海域</legend>
+          <div class="route-options">
+            <label class="route-choice" data-tone="atoll">
+              <input type="radio" name="route" value="atoll" checked>
+              <span class="radio-mark" aria-hidden="true"></span>
+              <span class="scene-fx" aria-hidden="true"><span class="scene-atmosphere"></span><span class="scene-trace"></span></span>
+              <strong>环礁门</strong>
+              <small>外湾</small>
+            </label>
+            <label class="route-choice" data-tone="trench">
+              <input type="radio" name="route" value="trench">
+              <span class="radio-mark" aria-hidden="true"></span>
+              <span class="scene-fx" aria-hidden="true"><span class="scene-atmosphere"></span><span class="scene-trace"></span></span>
+              <strong>静默海沟</strong>
+              <small>深水</small>
+            </label>
+            <label class="route-choice" data-tone="beacon">
+              <input type="radio" name="route" value="beacon">
+              <span class="radio-mark" aria-hidden="true"></span>
+              <span class="scene-fx" aria-hidden="true"><span class="scene-atmosphere"></span><span class="scene-trace"></span></span>
+              <strong>回声灯塔</strong>
+              <small>夜航</small>
+            </label>
+          </div>
+        </fieldset>
+
+        <figure class="chart-view" data-tone="atoll">
+          <img id="route-image" src="../showcase/media/atoll.webp" alt="勘测艇停靠在海峡附近" width="720" height="724">
+          <span class="scene-fx" aria-hidden="true"><span class="scene-atmosphere"></span><span class="scene-trace"></span></span>
+          <figcaption class="chart-caption">
+            <div class="chart-name">
+              <p id="route-zone" class="eyebrow">近岸 / 外湾</p>
+              <h2 id="route-name">环礁门</h2>
+              <p id="route-description">沿潮口做一轮浅水扫测，确认返航浮标位置。</p>
+            </div>
+            <dl class="chart-data">
+              <div>
+                <dt>航时估计</dt>
+                <dd><strong id="route-duration">04</strong> 分</dd>
+              </div>
+              <div>
+                <dt>需备设备</dt>
+                <dd id="route-requirement">双频声呐</dd>
+              </div>
+            </dl>
+          </figcaption>
+        </figure>
+      </section>
+
+      <section class="dispatch" id="dispatch" aria-labelledby="dispatch-title" data-phase="draft">
+        <header class="dispatch-header">
+          <h2 id="dispatch-title">装配清单</h2>
+          <button type="button" class="reset" id="reset-draft">重置</button>
+        </header>
+
+        <div id="draft">
+          <fieldset id="kit-fields">
+            <legend class="sr-only">勘测设备</legend>
+            <label class="kit-item">
+              <input id="kit-sonar" type="checkbox" name="equipment" value="sonar" checked>
+              <span class="kit-checkbox" aria-hidden="true"></span>
+              <span class="kit-text"><strong>双频声呐</strong><small>读取水下断面</small></span>
+              <span class="kit-meta"><small class="requirement-tag" data-required="sonar">必需</small><span>2 单位</span></span>
+            </label>
+            <label class="kit-item">
+              <input id="kit-battery" type="checkbox" name="equipment" value="battery">
+              <span class="kit-checkbox" aria-hidden="true"></span>
+              <span class="kit-text"><strong>备用电池</strong><small>支撑深水航段</small></span>
+              <span class="kit-meta"><small class="requirement-tag" data-required="battery" hidden>必需</small><span>3 单位</span></span>
+            </label>
+            <label class="kit-item">
+              <input id="kit-beacon" type="checkbox" name="equipment" value="beacon">
+              <span class="kit-checkbox" aria-hidden="true"></span>
+              <span class="kit-text"><strong>回传信标</strong><small>维持夜航链路</small></span>
+              <span class="kit-meta"><small class="requirement-tag" data-required="beacon" hidden>必需</small><span>2 单位</span></span>
+            </label>
+          </fieldset>
+
+          <div class="load" id="payload" data-limit="ok">
+            <div class="load-label">
+              <span id="payload-label">装载重量</span>
+              <output id="payload-value" for="kit-sonar kit-battery kit-beacon"><strong>2</strong> / 5</output>
+            </div>
+            <div class="load-units" aria-hidden="true">
+              <span data-filled></span><span data-filled></span><span></span><span></span><span></span>
+            </div>
+          </div>
+
+          <div class="action-block">
+            <p id="eligibility" class="eligibility" role="status">配置已就绪。</p>
+            <button type="submit" class="action action-primary" id="start-dispatch" aria-describedby="eligibility">
+              开始派遣演练 <span aria-hidden="true">↗</span>
+            </button>
+          </div>
+        </div>
+
+        <div id="running" hidden>
+          <p class="current-route" id="run-route"></p>
+          <h3 id="progress-title">演练进度</h3>
+          <div class="run-progress">
+            <progress id="run-progress" value="0" max="100" aria-labelledby="progress-title"></progress>
+            <span id="run-percent" aria-hidden="true">0%</span>
+          </div>
+          <ol class="run-steps">
+            <li>核对航线与设备</li>
+            <li>模拟进入航段</li>
+            <li>整理派遣回执</li>
+          </ol>
+          <button type="button" class="action action-secondary" id="cancel-dispatch">取消演练</button>
+        </div>
+
+        <div id="done" hidden>
+          <div class="receipt-head">
+            <span class="receipt-icon" aria-hidden="true">✓</span>
+            <h3 id="result-title" tabindex="-1">演练完成</h3>
+          </div>
+          <dl class="receipt">
+            <div><dt>勘测海域</dt><dd id="result-route"></dd></div>
+            <div><dt>已装配设备</dt><dd id="result-kit"></dd></div>
+            <div><dt>装载重量</dt><dd id="result-load"></dd></div>
+          </dl>
+          <button type="button" class="action action-primary" id="edit-dispatch">返回配置</button>
+        </div>
+        <p class="disclosure">演练仅在当前页面运行。</p>
+      </section>
+    </form>
+    <p class="sr-only" id="dispatch-status" role="status"></p>
+  </main>
+</body>
+</html>

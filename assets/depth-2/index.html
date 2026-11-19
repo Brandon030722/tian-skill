@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>回波校准 · 折光航线</title>
+  <meta name="description" content="通过频段和灵敏度调节虚拟回波图并完成一次扫描。">
+  <link rel="stylesheet" href="instrument.css">
+  <script defer src="instrument.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-content">
+      <a href="../showcase/index.html" class="brand"><span class="brand-mark" aria-hidden="true"></span><span>折光航线 <small lang="en">REFRACTION ROUTES</small></span></a>
+      <nav class="header-nav" aria-label="演示导航"><span class="tier">二档 · 组件联动</span><a href="../gallery/index.html">三档总览 <span aria-hidden="true">↗</span></a></nav>
+    </div>
+  </header>
+  <main>
+    <div class="intro">
+      <div>
+        <p class="section-label" lang="en">SIGNAL CALIBRATION</p>
+        <h1>回波校准</h1>
+      </div>
+      <p>选择频段，调节灵敏度，再扫描一次确认模拟回波。</p>
+    </div>
+
+    <div class="instrument">
+      <section class="scope" aria-labelledby="scope-title">
+        <div class="scope-head">
+          <h2 id="scope-title">极坐标回波图</h2>
+          <span class="scope-mode" id="scope-mode">参数预览</span>
+        </div>
+        <fieldset id="band-selection" class="scope-bands">
+          <legend>频段</legend>
+          <div class="band-options">
+            <label class="band-option">
+              <input type="radio" name="band" value="coastal" checked>
+              <span class="band-name">近岸</span>
+              <small class="band-frequency">28 kHz</small>
+              <span class="band-detail" aria-hidden="true">量程 <span data-band-range></span></span>
+            </label>
+            <label class="band-option">
+              <input type="radio" name="band" value="trench">
+              <span class="band-name">深沟</span>
+              <small class="band-frequency">12 kHz</small>
+              <span class="band-detail" aria-hidden="true">量程 <span data-band-range></span></span>
+            </label>
+            <label class="band-option">
+              <input type="radio" name="band" value="reef">
+              <span class="band-name">礁群</span>
+              <small class="band-frequency">45 kHz</small>
+              <span class="band-detail" aria-hidden="true">量程 <span data-band-range></span></span>
+            </label>
+          </div>
+        </fieldset>
+        <div class="scope-view">
+          <canvas id="scope-canvas" aria-hidden="true"></canvas>
+        </div>
+        <div class="scope-foot">
+          <div class="scope-reading">
+            <span>当前频段</span><strong id="frequency">28 kHz</strong>
+          </div>
+          <div class="scope-reading">
+            <span>扫描量程</span><strong id="scope-range">2 km</strong>
+          </div>
+          <div class="scope-reading">
+            <span>图内亮点</span><strong id="contact-count">—</strong>
+          </div>
+          <div class="legend"><span aria-hidden="true"></span>模拟回波</div>
+        </div>
+      </section>
+
+      <section class="controls" aria-labelledby="controls-title">
+        <h2 id="controls-title">扫描参数</h2>
+
+        <div class="gain">
+          <div class="range-heading">
+            <label for="sensitivity">灵敏度</label>
+            <output for="sensitivity" id="sensitivity-value" aria-live="off">60%</output>
+          </div>
+          <input type="range" id="sensitivity" min="10" max="100" value="60" step="5">
+          <div class="range-scale" aria-hidden="true"><span>10%</span><span>55%</span><span>100%</span></div>
+        </div>
+
+        <div class="scan">
+          <div class="scan-actions">
+            <button type="button" class="scan-button" data-scan>
+              <span class="scan-icon" aria-hidden="true"></span>
+              <span class="scan-label">开始扫描</span>
+            </button>
+            <button type="button" class="stop-button" data-stop disabled>取消扫描</button>
+          </div>
+          <div class="scan-progress">
+            <progress id="scan-progress" max="100" value="0" aria-label="扫描进度"></progress>
+            <span id="scan-percent" aria-hidden="true">0%</span>
+          </div>
+          <p id="scan-status" class="status" role="status" aria-atomic="true">当前显示参数预览。扫描结束后会报告捕获数量。</p>
+        </div>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

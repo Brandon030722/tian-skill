@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="折光航线是一个原创科幻海域探索游戏发布页样例。">
+  <title>折光航线 · Refraction Routes</title>
+  <link rel="stylesheet" href="showcase.css">
+  <script src="showcase.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#dispatch">跳到内容</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="wordmark" href="#dispatch" aria-label="折光航线首页">
+        <span class="wordmark-symbol" aria-hidden="true"></span>
+        <span>折光航线 <small>REFRACTION ROUTES</small></span>
+      </a>
+      <button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="site-navigation">菜单 <span aria-hidden="true"></span></button>
+      <nav id="site-navigation" aria-label="页面章节" data-navigation>
+        <a href="#dispatch" aria-current="location">首发</a>
+        <a href="#chart">探索海域</a>
+        <a href="#journal">勘测日志</a>
+        <button class="action action-frame mobile-action" type="button" data-open-test aria-haspopup="dialog">勘测测试 <span aria-hidden="true">↗</span></button>
+      </nav>
+      <button class="action action-frame header-action" type="button" data-open-test aria-haspopup="dialog">勘测测试 <span aria-hidden="true">↗</span></button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="dispatch" aria-labelledby="launch-title">
+      <picture class="hero-art">
+        <source media="(max-width: 720px)" srcset="media/hero-small.webp" width="540" height="960">
+        <img src="media/hero.webp" alt="" width="1672" height="941" fetchpriority="high">
+      </picture>
+      <div class="hero-content frame">
+        <p class="locator"><span></span> 边界海域 · 第一次勘测</p>
+        <h1 id="launch-title">折光航线</h1>
+        <p class="hero-english" lang="en">REFRACTION<br> ROUTES<span>.</span></p>
+        <p class="hero-intro">驾驶勘测艇穿过会移动的海域，<br class="desktop-break">沿着微光，重绘失落的航线。</p>
+        <div class="hero-actions">
+          <button class="action action-primary" type="button" data-open-test aria-haspopup="dialog">领取测试通行证 <span aria-hidden="true">↗</span></button>
+          <a class="action action-frame" href="#chart">查看探索海域 <span aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+      <button class="motion-preview" type="button" data-open-film aria-haspopup="dialog">
+        <span class="play-disc" aria-hidden="true"></span>
+        <span>播放海域影像</span>
+      </button>
+      <div class="hero-footer frame">
+        <span>开放海域探索游戏</span>
+      </div>
+    </section>
+
+    <section class="chart frame" id="chart" aria-labelledby="chart-title">
+      <header class="section-head">
+        <div>
+          <p class="section-label" lang="en">REGION CHART</p>
+          <h2 id="chart-title">探索海域</h2>
+        </div>
+        <p>三条互相连通的航线，每一条都由潮汐和地形改写。</p>
+      </header>
+      <div class="route-deck">
+        <div class="route-list" role="tablist" aria-label="勘测航线" data-route-list>
+          <button id="tab-atoll" class="route-tab" type="button" role="tab" aria-controls="route-atoll" aria-selected="true" data-route-tab>
+            <span class="route-meta"><span class="route-index" aria-hidden="true">01</span><span>环礁门</span><span class="route-mark" aria-hidden="true">↗</span></span>
+          </button>
+          <button id="tab-trench" class="route-tab" type="button" role="tab" aria-controls="route-trench" aria-selected="false" tabindex="-1" data-route-tab>
+            <span class="route-meta"><span class="route-index" aria-hidden="true">02</span><span>静默海沟</span><span class="route-mark" aria-hidden="true">↗</span></span>
+          </button>
+          <button id="tab-beacon" class="route-tab" type="button" role="tab" aria-controls="route-beacon" aria-selected="false" tabindex="-1" data-route-tab>
+            <span class="route-meta"><span class="route-index" aria-hidden="true">03</span><span>回声灯塔</span><span class="route-mark" aria-hidden="true">↗</span></span>
+          </button>
+        </div>
+        <div class="route-display">
+          <section class="route-panel" id="route-atoll" role="tabpanel" aria-labelledby="tab-atoll" tabindex="0">
+            <img src="media/atoll.webp" alt="" width="720" height="724" loading="lazy">
+            <div class="route-copy">
+              <p lang="en">ATOLL GATE</p>
+              <h3>沿潮水开启的门</h3>
+              <p>低潮时环礁露出一线通道。沿浮标穿过潮口，在下一股暗流抵达前进入内湾。</p>
+            </div>
+          </section>
+          <section class="route-panel" id="route-trench" role="tabpanel" aria-labelledby="tab-trench" tabindex="0" hidden>
+            <img src="media/trench.webp" alt="" width="720" height="724" loading="lazy">
+            <div class="route-copy">
+              <p lang="en">SILENT TRENCH</p>
+              <h3>在回声消失的地方下潜</h3>
+              <p>海沟让声呐回波变得稀疏。贴着岩壁校准测距仪，用浮标间的光点确认返航路线。</p>
+            </div>
+          </section>
+          <section class="route-panel" id="route-beacon" role="tabpanel" aria-labelledby="tab-beacon" tabindex="0" hidden>
+            <img src="media/beacon.webp" alt="" width="720" height="724" loading="lazy">
+            <div class="route-copy">
+              <p lang="en">ECHO BEACON</p>
+              <h3>让灯塔重新传出信号</h3>
+              <p>夜航时跟随短促的橙光靠岸。恢复灯塔的发射阵列，随后用它中继更远处的观测点。</p>
+            </div>
+          </section>
+        </div>
+      </div>
+      <div class="route-controls" aria-label="切换航线">
+        <span data-route-count aria-live="polite">01 / 03</span>
+        <button class="action action-icon" type="button" data-route-step="-1" aria-label="上一条航线">←</button>
+        <button class="action action-icon" type="button" data-route-step="1" aria-label="下一条航线">→</button>
+      </div>
+    </section>
+
+    <section class="journal" id="journal" aria-labelledby="journal-title">
+      <div class="frame">
+        <header class="section-head">
+          <div>
+            <p class="section-label" lang="en">FIELD JOURNAL</p>
+            <h2 id="journal-title">勘测日志</h2>
+          </div>
+          <div class="news-tabs" role="group" aria-label="日志分类">
+            <button type="button" data-news-filter="all" aria-pressed="true">全部</button>
+            <button type="button" data-news-filter="dispatch" aria-pressed="false">公告</button>
+            <button type="button" data-news-filter="lab" aria-pressed="false">开发</button>
+          </div>
+        </header>
+        <p class="sr-only" data-news-status aria-live="polite"></p>
+        <div class="news-list">
+          <article data-news-type="dispatch">
+            <details>
+              <summary><time datetime="2026-11-19">11.19</time><span class="news-category">公告</span><span>边界海域首次勘测即将开始</span><span class="news-expand" aria-hidden="true"></span></summary>
+              <p>首次勘测覆盖环礁门、静默海沟与回声灯塔。访客可以从页面上方领取本地演示通行证。</p>
+            </details>
+          </article>
+          <article data-news-type="lab">
+            <details>
+              <summary><time datetime="2026-11-12">11.12</time><span class="news-category">开发</span><span>制作札记：航线会随潮位变化</span><span class="news-expand" aria-hidden="true"></span></summary>
+              <p>同一条海峡的入口会随潮位显露或消失。勘测时持续比较水位、浮标位置与回波距离。</p>
+            </details>
+          </article>
+          <article data-news-type="lab">
+            <details>
+              <summary><time datetime="2026-11-04">11.04</time><span class="news-category">开发</span><span>声音记录：靠岸前的灯塔信号</span><span class="news-expand" aria-hidden="true"></span></summary>
+              <p>三组短促信号分别提示转向、减速与可着陆，让夜航也能靠声音辨别入口。</p>
+            </details>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer frame">
+    <span>折光航线 · 原创发布页演示</span>
+    <a href="#dispatch">返回首发 <span aria-hidden="true">↑</span></a>
+  </footer>
+
+  <dialog id="test-dialog" aria-labelledby="test-title">
+    <form method="dialog"><button type="submit" class="action action-icon dialog-close" aria-label="关闭" autofocus>×</button></form>
+    <p class="locator"><span></span> 第一次勘测</p>
+    <h2 id="test-title">领取测试通行证</h2>
+    <p class="dialog-intro">这是本地演示。通行证保存在当前浏览器，无需填写个人信息。</p>
+    <button class="action action-primary" type="button" data-save-pass>保存演示通行证</button>
+    <p class="test-status" data-test-status role="status"></p>
+  </dialog>
+  <dialog class="film-dialog" id="film-dialog" aria-labelledby="film-title">
+    <form method="dialog"><button type="submit" class="action action-icon dialog-close" aria-label="关闭影像" autofocus>×</button></form>
+    <h2 id="film-title">海域影像</h2>
+    <video controls playsinline preload="none" poster="media/hero.webp" src="media/preview.mp4"></video>
+    <p class="film-status" role="status"></p>
+  </dialog>
+</body>
+</html>

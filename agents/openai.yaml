@@ -1,0 +1,4 @@
+interface:
+  display_name: "Tian"
+  short_description: "结合官网前端范式与三档控件深度，制作原创发布站和互动工具"
+  default_prompt: "用 $tian 为我的项目实现原创发布站，按访问任务选择控件深度并验证桌面、手机与键盘交互。"
